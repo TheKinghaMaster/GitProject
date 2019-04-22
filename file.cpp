@@ -512,3 +512,24 @@ void database()
     }
 h:
 }
+
+
+void reserve()
+{
+    int ch;
+    do
+    {
+        cout<<"1.Reserve\n2.Return to the main menu\n";
+        cout<<"Enter your choice:";
+        cin>>ch;
+        cout<<endl;
+        switch(ch)
+        {
+        case 1:
+            res();
+            break;
+        }
+    }
+    while(ch==1);
+    getch();
+}
