@@ -579,3 +579,101 @@ void user()
     cout<<"****************************************************\n";
     char *password;
 
+    fstream f;
+    f.open("id.txt",ios::in|ios::out|ios::binary);
+    char id[100];
+    puts("Enter your id:");
+    gets(id);
+    password=getpass("Enter your password:");
+    while(f.read((char *) & a,sizeof(a)))
+    {
+        if((strcmp(a.id,id)==0)&&(strcmp(a.pass,password)==0))
+        {
+            do
+            {
+                cout<<"1.Reserve\n2.Cancell\n3.Enquiry\n4.Return to the main menu\n";
+                cout<<"Enter your choice:";
+                cin>>ch;
+                cout<<endl;
+                switch(ch)
+                {
+                case 1:
+                    reserve();
+                    break;
+                case 2:
+                    cancell();
+                    break;
+                case 3:
+                    enquiry();
+                    break;
+                }
+            }
+            while(ch<=3);
+            goto j;
+        }
+        else
+        {
+            d=1;
+        }
+    }
+    if(d==1)
+    {
+        cout<<"Enter your user id and password correctly\n";
+    }
+
+    getch();
+j:
+}
+void manage()
+{
+    int ch;
+    fstream f;
+    char c;
+    login a;
+    cout<<".........WELCOME TO THE USER MANAGEMENT MENU........\n";
+    do
+    {
+        cout<<"1.Create id data base\n2.Add details\n";
+        cout<<"3.Display details\n4.Return to the main menu\n";
+        cout<<"Enter your choice:";
+        cin>>ch;
+        cout<<endl;
+        switch(ch)
+        {
+        case 1:
+            f.open("id.txt",ios::out|ios::binary);
+            do
+            {
+                a.getid();
+                f.write((char *) & a,sizeof(a));
+                cout<<"Do you want to add one more record\n";
+                cout<<"y-Yes\nn-No\n";
+                cin>>c;
+            }
+            while(c=='y');
+            f.close();
+            break;
+        case 2:
+            f.open("id.txt",ios::in|ios::out|ios::binary|ios::app);
+            a.getid();
+            f.write((char *) & a,sizeof(a));
+            f.close();
+            break;
+        case 3:
+            f.open("id.txt",ios::in|ios::out|ios::binary);
+
+            f.seekg(0);
+            while(f.read((char *) & a,sizeof(a)))
+            {
+                a.displayid();
+            }
+            f.close();
+            break;
+        }
+    }
+    while(ch<=3);
+    getch();
+}
+}
+
+
