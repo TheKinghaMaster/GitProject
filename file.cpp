@@ -400,6 +400,7 @@ while(1)
 
 return 0;
 
+
 void manage();
 void can();
 void user();
@@ -512,8 +513,6 @@ void database()
     }
 h:
 }
-
-
 void reserve()
 {
     int ch;
@@ -532,7 +531,7 @@ void reserve()
     }
     while(ch==1);
     getch();
-
+}
 void res()
 {
     detail a;
@@ -654,4 +653,4 @@ void res()
     f2.close();
     getch();
 h:
-}}
+}
