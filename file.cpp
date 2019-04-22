@@ -491,8 +491,6 @@ void cancell()
                     }
                 }
             }
-
-
             else if(strcmp(c.clas,s)==0)
             {
                 while(f1.read((char *) & a,sizeof(a)))
@@ -675,5 +673,3 @@ void manage()
     getch();
 }
 }
-
-
