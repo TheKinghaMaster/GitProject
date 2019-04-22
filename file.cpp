@@ -399,3 +399,67 @@ while(1)
 }
 
 return 0;
+
+void a::position(int l)
+
+{
+
+  int s=0;p=0;
+
+  for (int i =0; i<8;i++)
+
+  {
+
+    cout<<"\n";
+
+    for (int j = 0;j<4; j++)
+
+    {
+
+      s++;
+
+      if(strcmp(bus[l].seat[i][j], "Empty")==0)
+
+        {
+
+          cout.width(5);
+
+          cout.fill(' ');
+
+          cout<<s<<".";
+
+          cout.width(10);
+
+          cout.fill(' ');
+
+          cout<<bus[l].seat[i][j];
+
+          p++;
+
+        }
+
+        else
+
+        {
+
+        cout.width(5);
+
+        cout.fill(' ');
+
+        cout<<s<<".";
+
+        cout.width(10);
+
+        cout.fill(' ');
+
+        cout<<bus[l].seat[i][j];
+
+        }
+
+      }
+
+    }
+
+  cout<<"\n\nThere are "<<p<<" seats empty in Bus No: "<<bus[l].busn;
+
+  }
