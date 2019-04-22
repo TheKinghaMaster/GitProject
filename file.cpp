@@ -399,3 +399,95 @@ while(1)
 }
 
 return 0;
+
+void displaypassdetail()
+{
+    fstream f;
+    reser b;
+    f.open("p.txt",ios::in|ios::out|ios::binary);
+    f.seekg(0);
+    while(f.read((char *) & b,sizeof(b)))
+    {
+        b.displayresdet();
+    }
+    f.close();
+    getch();
+}
+void enquiry()
+{
+
+    fstream f;
+    f.open("t.txt",ios::in|ios::out|ios::binary);
+    detail a;
+    while(f.read((char *) & a,sizeof(a)))
+    {
+        a.displaydetail();
+    }
+    getch();
+}
+void cancell()
+{
+    detail a;
+    reser b;
+    canc c;
+    fstream f1,f2,f3;
+    f1.open("t.txt",ios::in|ios::out|ios::binary);
+    f2.open("p.txt",ios::in|ios::out|ios::binary);
+    f3.open("cn.txt",ios::in|ios::out|ios::binary);
+    cout<<"**********CANCELLATION MENU*********\n";
+    c.getcancdet();
+    while(f2.read((char *) & b,sizeof(b)))
+    {
+        if(b.pnr==c.pnr)
+        {
+            c.tno=b.tno;
+            strcpy(c.tname,b.tname);
+            strcpy(c.bp,b.bp);
+            strcpy(c.dest,b.dest);
+            c.nosc=b.nosr;
+            for(int j=0; j<c.nosc; j++)
+            {
+                strcpy(c.pname[j],b.pname[j]);
+                c.age[j]=b.age[j];
+            }
+            strcpy(c.clas,b.clas);
+            if(strcmp(c.clas,f)==0)
+            {
+                while(f1.read((char *) & a,sizeof(a)))
+                {
+
+                    if(a.tno==c.tno)
+                    {
+                        a.c1=a.c1+c.nosc;
+                        d=a.d;
+                        m=a.m;
+                        addr=f1.tellg();
+                        ad=sizeof(a.c1);
+                        f1.seekp(addr-(7*ad));
+                        f1.write((char *) & a.c1,sizeof(a.c1));
+                        tamt=b.amc;
+                        if((c.d==d)&&(c.m==m))
+                        {
+                            cout<<"You are cancelling at the date of departure\n";
+                            c.amr=tamt-((tamt*60)/100);
+                        }
+                        else if(c.m==m)
+                        {
+                            cout<<"You are cancelling at the month of departure\n";
+                            c.amr=tamt-((tamt*50)/100);
+                        }
+                        else if(m>c.m)
+                        {
+                            cout<<"You are cancelling one month before the date of departure\n";
+                            c.amr=tamt-((tamt*20)/100);
+                        }
+                        else
+                        {
+                            cout<<"Cancelling after the departure\n";
+                            cout<<"Your request cannot be completed\n";
+                        }
+                        goto h;
+                        c.displaycancdet();
+                    }
+                }
+            }
